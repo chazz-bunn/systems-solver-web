@@ -7,12 +7,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function myFunction() {
         deleteGrid();
-        for(let i = 0; i < n.value; i++){
-            var grid = document.createElement("input");
-            grid.setAttribute("type", "number");
+        const element = document.getElementById("div2");
+        for(let i = 0; i < n.value; i++) {
+            for(let j = 0; j < n.value; j++) {
+                var cell = document.createElement("input");
+                cell.setAttribute("type", "number");
 
-            const element = document.getElementById("div2");
-            element.appendChild(grid);
+                element.appendChild(cell);
+            }
+            var r = document.createElement("label")
+            r.append(document.createTextNode(" | "));
+            element.appendChild(r)
+
+            var rcell = document.createElement("input");
+            rcell.setAttribute("type", "number");
+            element.appendChild(rcell);
+
+            var b = document.createElement("br");
+            element.appendChild(b);
         }
     }
     
