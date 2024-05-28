@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     n.addEventListener("input", myFunction);
 
-
     function myFunction() {
         deleteGrid();
         for(let i = 0; i < n.value; i++){
