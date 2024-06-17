@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const matrix = [];
         buildMatrix(matrix);
 
+        /* // Assuming integer coeffecients, reduces rows to lowest terms. May implement rational number feature
         for(let row of matrix) {
             let g = gcf.apply(this, row);
             let s = Math.sign(row[0])
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 row[i] = s*(row[i]/g);
             }
         }
+        */
         
         for(let i = 0; i < size - 1; i++){
             for(let j = i+1; j < size; j++){
@@ -119,10 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         ans += ")";
-        answerRow.innerHTML = ansRow + ans; 
+        answerRow.innerHTML = "Answer: <mark>" + ansRow + ans + "</mark>"; 
     }
 
     function buildMatrix(mat) {
+        //Extracts numerical values from cells array
         mat.length = 0;
 
         for(let i = 0; i < size; i++) {
