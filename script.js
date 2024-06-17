@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let n = document.getElementById("number-of-equations");
     let grid = document.getElementById("grid");
     let solveButton = document.getElementById("solve-button")
+    let answerRow = document.getElementById("answer-row-middle");
     let startFlag = true;
+    let ansRow = "";
 
     const cells = [];
     let size = 0;
@@ -32,9 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
         grid.style.gridTemplateRows = "repeat(" + String(size) + ", 1fr)";
         grid.style.gridTemplateColumns= "repeat(" + String(size+1) + ", 1fr)";
 
+        ansRow = "(";
+
         cells.length = 0;
         for(let i = 1; i <= size; i++) {
             const row = [];
+            ansRow += "x<sub>" + String(i) + "</sub>";
+            if(i < size) {
+                ansRow += ", ";
+            }
             for(let j = 1; j <= size + 1; j++) {
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
@@ -62,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             cells.push(row);
         }
+        ansRow += ") =";
     }
 
     function clearElementChildren(el) {
@@ -94,7 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        console.log(matrix);
+        for(let i = size - 1; i >= 0; i--){
+            for(let j = size - 1; j > i; j--){
+                matrix[i][size] -= matrix[i][j]*matrix[j][size];
+                matrix[i][j] = 0;
+            }
+            matrix[i][size] /= matrix[i][i];
+            matrix[i][i] = 1;
+        }
+        let ans = " ("
+        for(let i = 0; i < size; i++){
+            ans += String(matrix[i][size]);
+            if(i < size-1) {
+                ans += ", ";
+            }
+        }
+        ans += ")";
+        answerRow.innerHTML = ansRow + ans; 
     }
 
     function buildMatrix(mat) {

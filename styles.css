@@ -115,6 +115,14 @@ a:hover, a:active {
         position: relative;
         display: grid;
         /*outline: solid white;*/
+}
+
+.answer-row {
+    display: grid;
+    grid-template-columns: 1fr min(65ch, 100%) 1fr;
+    }
+    .answer-row-middle {
+        grid-column: 2;
     }
         
   
